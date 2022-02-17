@@ -36,6 +36,7 @@ public @Data class DroneActivityDTO {
 	@NotBlank
 	private Double totalWeight;
 
+	private String deliveryAddress;
 	
 	@JsonProperty(required = true)
 	@NotEmpty(message="Add medications before loading to drone")

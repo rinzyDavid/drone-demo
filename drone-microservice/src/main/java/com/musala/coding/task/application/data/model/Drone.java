@@ -27,7 +27,7 @@ public @Data class Drone {
 	
 	@Column(name="model")
 	@Enumerated(value = EnumType.STRING)
-	private DroneModel deonModel;
+	private DroneModel droneModel;
 	
 	@Column(name="weight_max")
 	@DecimalMax(value = "500", message =" Drone cannot carry more than {value} grams")

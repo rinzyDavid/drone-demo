@@ -1,6 +1,11 @@
 package com.musala.coding.task.application.data.model;
 
+import java.util.List;
+
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 
@@ -17,13 +22,19 @@ public @Data class DroneActivity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@JsonIgnore
 	private Long id;
 	
 	@Column(name="drone_id")
 	private String droneId;
 	
-	@Column(name="medication_id")
-	private Long medicationId;
+	@Column(name="activity_state")
+	@Enumerated(value = EnumType.STRING)
+	private DroneState state;
+	
+	@Column(name="loaded_medications")
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Medication> medications;
 	
 	@Column(name="quantity_loaded")
 	private Integer quantity;
