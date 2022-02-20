@@ -6,7 +6,7 @@ import lombok.Data;
 
 /**
  * 
- * @author mac
+ * @author David
  * DTO class for displaying a drone's activity and loaded medications
  *
  */

@@ -29,7 +29,7 @@ import org.springframework.http.ResponseEntity;
 
 /**
  * 
- * @author mac
+ * @author David
  * This Drone Controller will expose the following services
  * 1. Register a new drone
  * 2. Check drone battery life

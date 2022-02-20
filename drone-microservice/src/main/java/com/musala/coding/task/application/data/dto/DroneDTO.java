@@ -14,7 +14,7 @@ import lombok.Data;
 
 /**
  * 
- * @author mac
+ * @author David
  * DTO class for registering and displaying a drone 
  */
 

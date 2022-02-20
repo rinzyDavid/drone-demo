@@ -5,7 +5,7 @@ import java.util.List;
 import lombok.Data;
 /**
  * 
- * @author mac
+ * @author David
  * DTO class for displaying drones available for loading
  *
  */

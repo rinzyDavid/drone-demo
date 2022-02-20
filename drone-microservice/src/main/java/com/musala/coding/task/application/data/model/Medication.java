@@ -7,7 +7,7 @@ import lombok.Data;
 
 /**
  * 
- * @author mac
+ * @author David
  *Entity class to map medications in database
  */
 

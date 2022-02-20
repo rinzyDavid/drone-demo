@@ -20,7 +20,7 @@ import com.musala.coding.task.resource.api.Response;
 
 /**
  * 
- * @author mac
+ * @author David
  * 
  *A concrete implementation of  DroneActivityService
  */

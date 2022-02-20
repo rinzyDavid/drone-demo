@@ -11,7 +11,7 @@ import lombok.Data;
 
 /**
  * 
- * @author mac
+ * @author David
  * Entity class to map drone activity when the drone is been loaded
  *
  */

@@ -22,7 +22,7 @@ import io.swagger.v3.oas.models.info.License;
 
 /**
  * 
- * @author mac
+ * @author David
  *Configuration file for Bean initialization
  */
 

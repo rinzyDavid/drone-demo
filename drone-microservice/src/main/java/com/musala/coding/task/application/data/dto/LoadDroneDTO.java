@@ -13,7 +13,7 @@ import lombok.Data;
 
 /**
  * 
- * @author mac
+ * @author David
  * DTO class for loading a drone and displaying activity
  *
  */

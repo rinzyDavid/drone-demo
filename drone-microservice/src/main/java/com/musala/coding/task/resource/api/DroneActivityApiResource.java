@@ -26,7 +26,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 /**
  * 
- * @author mac
+ * @author David
  *This DroneActivityApiResource exposes the following functionality:
  *1.loading a drone with medication items;
  *2. checking loaded medication items for a given drone; 
