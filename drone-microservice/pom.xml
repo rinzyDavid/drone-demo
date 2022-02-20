@@ -16,7 +16,7 @@
 	<properties>
 		<java.version>11</java.version>
 		 <org.mapstruct.version>1.5.0.Beta2</org.mapstruct.version>
-		  <spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
+		  <spring-cloud.version>2021.0.1</spring-cloud.version>
 	</properties>
 	<dependencies>
 	
@@ -74,7 +74,7 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-collections4</artifactId>
-            <version>4.4</version>
+           
         </dependency>
 
         <dependency>

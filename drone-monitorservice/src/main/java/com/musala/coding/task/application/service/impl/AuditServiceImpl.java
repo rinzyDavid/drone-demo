@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.client.RestTemplate;
 
 import com.musala.coding.task.application.dto.AuditDTO;
@@ -36,15 +37,18 @@ public class AuditServiceImpl implements AuditService{
 	 * 1. Make a call to the drone service to check drone battery status
 	 * 2. Save the data for future analysis
 	 */
+	@Scheduled(cron="${cron-expression}")
 	@Override
 	public void runAudit() {
 		// TODO Auto-generated method stub
 		
 		try {
+			System.out.println("cron started");
 		
-		AuditDTO auditDto =  restTemplate.getForObject(droneServiceUrl, AuditDTO.class);
+		AuditDTO auditDto =  restTemplate.getForObject("http://droneService/api/v1/drones/audit", AuditDTO.class);
 		DroneAudit audit = mapper.dtoToAudit(auditDto);
 		audit.setId(UUID.randomUUID().toString());
+		System.out.println(auditDto);
 		auditRepo.save(audit);
 		
 		
