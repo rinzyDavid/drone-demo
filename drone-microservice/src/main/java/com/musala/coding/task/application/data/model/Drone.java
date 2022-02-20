@@ -7,6 +7,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.Max;
+
 import lombok.Data;
 
 /**
@@ -34,6 +36,7 @@ public @Data class Drone {
 	private Double maxWeight; // Maximum weight the drone can carry
 	
 	@Column(name="battery_capacity")
+	@Max(value=100,message="Battery life cannot be more than 100%")
 	private Integer batteryLife; // Battery capacity measured in percentage %
 	
 	@Column(name = "drone_state")

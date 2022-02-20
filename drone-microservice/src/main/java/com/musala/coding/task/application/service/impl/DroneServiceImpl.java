@@ -1,10 +1,12 @@
 package com.musala.coding.task.application.service.impl;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.musala.coding.task.application.data.dto.AuditDTO;
 import com.musala.coding.task.application.data.dto.AvailableDronesDTO;
 import com.musala.coding.task.application.data.dto.DroneBatteryDTO;
 import com.musala.coding.task.application.data.dto.DroneDTO;
@@ -15,6 +17,13 @@ import com.musala.coding.task.application.service.DroneService;
 import com.musala.coding.task.persistence.DroneRepository;
 
 
+/**
+ * 
+ * @author mac
+ * A Concrete implementation of DroneService interface
+ *
+ */
+
 @Service
 public class DroneServiceImpl implements DroneService{
 	
@@ -24,7 +33,7 @@ public class DroneServiceImpl implements DroneService{
 	@Autowired
 	private DroneMapper droneMapper;
 	
-	private int BETTERY_LIMIT=25;
+	private int BATTERY_LIMIT=25;
 	
 	
 	
@@ -33,6 +42,15 @@ public class DroneServiceImpl implements DroneService{
 	public DroneDTO registerDrone(DroneDTO droneDto) {
 		
 		Drone drone = droneMapper.dtoToDrone(droneDto);
+		if(drone.getBatteryLife()>BATTERY_LIMIT) {
+			drone.setDroneState(DroneState.LOADING);
+		}
+		else {
+			drone.setDroneState(DroneState.IDLE);
+		}
+		
+		
+		drone.setCurrentWeight(0.0);
 		Drone _drone = droneRepo.save(drone);
 		
 		return droneMapper.modelToDto(_drone);
@@ -48,12 +66,17 @@ public class DroneServiceImpl implements DroneService{
 	}
 
 	@Override
-	public List<DroneDTO> listDrones() {
+	public AuditDTO getDroneAudit() {
 		
 		List<Drone> drones = droneRepo.findAll();
 		
 		
-		return droneMapper.dronesToDto(drones);
+		List<DroneBatteryDTO> dtos= droneMapper.dronesToBatteryLog(drones);
+		AuditDTO audit = new AuditDTO();
+		audit.setDateTime(LocalDateTime.now());
+		audit.setDrones(dtos);
+		audit.setTotal(dtos.size());
+		return audit;
 	}
 
 	@Override

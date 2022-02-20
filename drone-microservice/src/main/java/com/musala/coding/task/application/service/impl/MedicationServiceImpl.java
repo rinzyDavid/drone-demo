@@ -1,17 +1,16 @@
 package com.musala.coding.task.application.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.musala.coding.task.application.data.dto.MedicationDTO;
 import com.musala.coding.task.application.data.mapper.MedicationMapper;
 import com.musala.coding.task.application.data.model.Medication;
 import com.musala.coding.task.application.service.MedicationService;
 import com.musala.coding.task.persistence.MedicationRepository;
 
-@Service
+
 public class MedicationServiceImpl implements MedicationService{
 	
 	
@@ -30,10 +29,14 @@ public class MedicationServiceImpl implements MedicationService{
 	}
 
 	@Override
-	public void createMedication(List<MedicationDTO> medDtos) {
+	public List<Medication> createMedication(List<MedicationDTO> medDtos) {
 		
 		List<Medication> meds = mapper.dtosToMedications(medDtos);
-		medRepo.saveAll(meds);
+		
+		List<Medication> actualList = new ArrayList<>();
+		medRepo.saveAll(meds).iterator().forEachRemaining(actualList::add);
+		
+		return actualList;
 		
 	}
 

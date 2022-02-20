@@ -33,7 +33,7 @@ public @Data class DroneActivity {
 	private DroneState state;
 	
 	@Column(name="loaded_medications")
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany
 	private List<Medication> medications;
 	
 	@Column(name="quantity_loaded")

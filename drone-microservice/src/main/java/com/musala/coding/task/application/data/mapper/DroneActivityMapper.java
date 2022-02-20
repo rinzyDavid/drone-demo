@@ -8,7 +8,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 import com.musala.coding.task.application.data.dto.DroneActivityDTO;
-import com.musala.coding.task.application.data.dto.MedicationDTO;
+import com.musala.coding.task.application.data.dto.LoadDroneDTO;
 import com.musala.coding.task.application.data.model.Drone;
 import com.musala.coding.task.application.data.model.DroneActivity;
 import com.musala.coding.task.application.data.model.Medication;
@@ -25,14 +25,18 @@ public interface DroneActivityMapper {
 	@Mapping(target="totalWeight",source="activity.weightLoaded")
 	@Mapping(target="deliveryAddress",source="activity.address")
 	@Mapping(target="medications",source="meds")
-	DroneActivityDTO activityToDTO(DroneActivity activity,Drone drone,Stream<Medication> meds);
+	LoadDroneDTO activityToDTO(DroneActivity activity,Drone drone,Stream<Medication> meds);
 	
 	
 	@Mapping(target="droneId",source="activity.serialNumber")
 	@Mapping(target="weightLoaded",source="activity.totalWeight")
 	@Mapping(target="address",source="activity.deliveryAddress")
-	@Mapping(target="medications",source="meds")
-	DroneActivity dtoToActivity(DroneActivityDTO activity,Drone drone,Stream<MedicationDTO> meds);
+	//@Mapping(target="medications",source="meds")
+	DroneActivity dtoToActivity(LoadDroneDTO activity,Drone drone);
+	
+	@Mapping(target="total",source="total")
+	@Mapping(target="activities",source="droneActivities")
+	DroneActivityDTO mapActivityDTO(int total,List<LoadDroneDTO> droneActivities);
 	
 	
 

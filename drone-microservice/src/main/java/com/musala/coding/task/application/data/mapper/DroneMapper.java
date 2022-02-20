@@ -18,10 +18,12 @@ public interface DroneMapper {
 	DroneMapper INSTANCE = Mappers.getMapper(DroneMapper.class);
 	
 	
-	
+	@Mapping(target="weightLoaded",source="drone.currentWeight")
 	DroneDTO modelToDto(Drone drone);
 	
 	List<DroneDTO> dronesToDto(List<Drone> drones);
+	
+	List<DroneBatteryDTO> dronesToBatteryLog(List<Drone> drones);
 	
 	
 	@InheritInverseConfiguration

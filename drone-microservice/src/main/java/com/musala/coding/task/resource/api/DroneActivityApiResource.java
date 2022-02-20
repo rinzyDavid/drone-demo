@@ -14,10 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.musala.coding.task.application.data.dto.AvailableDronesDTO;
 import com.musala.coding.task.application.data.dto.DroneActivityDTO;
-import com.musala.coding.task.application.data.dto.DroneBatteryDTO;
-import com.musala.coding.task.application.data.dto.DroneDTO;
+import com.musala.coding.task.application.data.dto.LoadDroneDTO;
 import com.musala.coding.task.application.service.DroneActivityService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -46,24 +44,19 @@ public class DroneActivityApiResource {
 	@Operation(summary = "Load drone with medication")
 	@ApiResponse(responseCode = "201", description = "Drone loaded", 
 	content = {@Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = Response.class))})
-	public ResponseEntity<Response> loadDrone(@Valid @RequestBody DroneActivityDTO dto){
-		
-		String result = activityService.loadDrone(dto);
-		Response res = new Response();
-		res.setData(result);
-		res.setStatus("OK");
-		
+	public ResponseEntity<Response> loadDrone(@Valid @RequestBody LoadDroneDTO dto){
+		Response res = activityService.loadDrone(dto);
 		return ResponseEntity.status(HttpStatus.CREATED).body(res);
 	}
 	
 	
 	
-	@GetMapping("/check/{activityRef}")
-	@Operation(summary = "Get drone activity using reference number returned when drone was loaded")
+	@GetMapping("/check/{serialNumber}")
+	@Operation(summary = "Get drone activity using serial number")
 	@ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Found the drone activity", 
-	content = {@Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = DroneActivityDTO.class))}),
+	content = {@Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = LoadDroneDTO.class))}),
 			@ApiResponse(responseCode = "404", description = "Drone not found", content = @Content)})
-	public ResponseEntity<DroneActivityDTO> findAvailableDroneActivity(@PathVariable("activityRef")String ref){
+	public ResponseEntity<DroneActivityDTO> findAvailableDroneActivity(@PathVariable("serialNumber")String ref){
 		
 		DroneActivityDTO dto = activityService.getDroneActivity(ref);
 		if(dto!=null)

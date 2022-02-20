@@ -21,8 +21,6 @@ private Long id;
 	private String name;
 	
 @JsonProperty(required = true)
-@NotEmpty
-@NotBlank
 @Max(value=500, message="Weight too heavy for drone")
 private Double weight;
 	

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.musala.coding.task.application.data.dto.AuditDTO;
 import com.musala.coding.task.application.data.dto.AvailableDronesDTO;
 import com.musala.coding.task.application.data.dto.DroneBatteryDTO;
 import com.musala.coding.task.application.data.dto.DroneDTO;
@@ -33,6 +34,7 @@ import org.springframework.http.ResponseEntity;
  * 1. Register a new drone
  * 2. Check drone battery life
  * 3. Check available drones for loading
+ * 4. Get drone audit
  *
  */
 
@@ -88,6 +90,12 @@ public class DroneApiResource {
 	
 	
 	
+	@GetMapping("/audit")
+	public ResponseEntity<AuditDTO> getDroneAudit(){
+		AuditDTO audit = droneService.getDroneAudit();
+		return ResponseEntity.ok(audit);
+		
+	}
 	
 	
 	

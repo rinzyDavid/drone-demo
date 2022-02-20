@@ -15,6 +15,14 @@ import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
 
+
+
+/**
+ * 
+ * @author mac
+ *Configuration file for Bean initialization
+ */
+
 @Configuration
 public class AppConfig {
 	
@@ -45,7 +53,7 @@ public class AppConfig {
 	
 	@Bean
 	public DroneActivityService activityService() {
-		return new DroneActivityServiceImpl();
+		return new DroneActivityServiceImpl(medicationService());
 	}
 
 }
