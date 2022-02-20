@@ -34,7 +34,7 @@ import java.util.stream.Collectors;
 @ControllerAdvice
 public class GeneralExceptionHandler extends ResponseEntityExceptionHandler{
 	
-	public static final String ACCESS_DENIED = "Access denied!";
+	//public static final String ACCESS_DENIED = "Access denied!";
 	public static final String INVALID_REQUEST = "Invalid request";
 	public static final String ERROR_MESSAGE_TEMPLATE = "message: %s %n requested uri: %s";
 	public static final String LIST_JOIN_DELIMITER = ",";
@@ -127,8 +127,7 @@ public class GeneralExceptionHandler extends ResponseEntityExceptionHandler{
 
 	private String getMessageForStatus(HttpStatus status) {
 		switch (status) {
-			case UNAUTHORIZED:
-				return ACCESS_DENIED;
+			
 			case BAD_REQUEST:
 				return INVALID_REQUEST;
 			default:

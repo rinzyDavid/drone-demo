@@ -14,14 +14,14 @@ import com.musala.coding.task.application.service.AuditService;
 
 
 @RestController
-@RequestMapping(path = {"/api/v1/audit"}, produces = APPLICATION_JSON_VALUE)
+@RequestMapping(path = {"/api/v1"}, produces = APPLICATION_JSON_VALUE)
 public class DroneMonitorApiResource {
 	
 	@Autowired
 	private AuditService auditService;
 	
 	
-	@GetMapping("/audit")
+	@GetMapping("/audits")
 	public ResponseEntity<AuditLogDTO> getDroneAudit(){
 		
 		AuditLogDTO audit = auditService.fetchAudits();
