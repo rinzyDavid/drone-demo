@@ -1,15 +1,18 @@
 package com.musala.coding.task.application.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.musala.coding.task.application.data.mapper.DroneMapper;
 import com.musala.coding.task.application.service.DroneActivityService;
 import com.musala.coding.task.application.service.DroneService;
 import com.musala.coding.task.application.service.MedicationService;
 import com.musala.coding.task.application.service.impl.DroneActivityServiceImpl;
 import com.musala.coding.task.application.service.impl.DroneServiceImpl;
 import com.musala.coding.task.application.service.impl.MedicationServiceImpl;
+import com.musala.coding.task.persistence.DroneRepository;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
@@ -25,6 +28,12 @@ import io.swagger.v3.oas.models.info.License;
 
 @Configuration
 public class AppConfig {
+	
+	@Autowired
+	private DroneRepository droneRepo;
+	
+	@Autowired
+	private DroneMapper droneMapper;
 	
 	@Bean
 	public OpenAPI customOpenAPI(@Value("${application-description}") String appDesciption,
@@ -43,7 +52,7 @@ public class AppConfig {
 	
 	@Bean
 	public DroneService droneService() {
-		return new DroneServiceImpl();
+		return new DroneServiceImpl(droneRepo,droneMapper);
 	}
 	
 	@Bean

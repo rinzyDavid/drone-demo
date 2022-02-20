@@ -10,10 +10,7 @@ import com.musala.coding.task.application.service.MedicationService;
 @TestConfiguration
 class TestConfiguartion {
 
-	@Bean
-	public DroneService droneService() {
-		return new DroneServiceImpl();
-	}
+	
 	
 	@Bean
 	public MedicationService medicationService() {

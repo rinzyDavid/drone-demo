@@ -27,13 +27,19 @@ import com.musala.coding.task.persistence.DroneRepository;
 @Service
 public class DroneServiceImpl implements DroneService{
 	
-	@Autowired
+	
 	private DroneRepository droneRepo;
 	
-	@Autowired
+
 	private DroneMapper droneMapper;
 	
 	private int BATTERY_LIMIT=25;
+	
+	@Autowired
+	public DroneServiceImpl(DroneRepository droneRepo,DroneMapper droneMapper) {
+		this.droneRepo = droneRepo;
+		this.droneMapper = droneMapper;
+	}
 	
 	
 	
